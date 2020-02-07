@@ -124,6 +124,9 @@ class FoodController extends \Admin\Controller
         $food  = VFood::getOne(['id'=>$id]);
         $next  = $this->router->to('adminVenueFood');
         $form  = new Form('admin.venue-food.index');
+        
+        if(!$food)
+            return $this->show404();
 
         if(!$form->csrfTest('noob'))
             return $this->res->redirect($next);
